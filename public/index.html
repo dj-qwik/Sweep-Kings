@@ -1511,9 +1511,9 @@ const CHARS = PLAYER_DEFS.map(makeChar);
 let AC = null, master = null;
 /* ================= soundtrack ================= */
 // The menu theme loops in the menus; match tracks rotate through matches, a new one each round.
-// Songs crossfade, and the mute choice is remembered. Empty until this game's songs arrive.
-const THEME = null;
-const TRACKS = [];
+// Songs crossfade, and the mute choice is remembered.
+const THEME = { name: 'Sweep Kings 1', file: 'sweep_kings_1.mp3' };
+const TRACKS = [2, 3, 4, 5, 6].map(n => ({ name: 'Sweep Kings ' + n, file: 'sweep_kings_' + n + '.mp3' }));
 const MUSIC_VOL = 0.55;
 const music = { els: [new Audio(), new Audio()], cur: 0, track: null, unlocked: false, muted: false, queue: [], announce: false };
 try { music.muted = localStorage.getItem('sweepkings.musicMuted') === '1'; } catch (e) {}

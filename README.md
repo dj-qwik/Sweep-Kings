@@ -2,13 +2,13 @@
 
 A party knockout game for up to four players, in the style of a Jump Showdown final. Everyone's a little
 royal on a round platform over a pit. A low bar (a giant broom) sweeps round and gets faster and faster:
-jump it. A slow high bar swats anyone caught mid-jump. From 30 seconds in, a wedge of the platform
+jump it. A slow high bar at chest height knocks over anyone standing: duck or dive under it. From 30 seconds in, a wedge of the platform
 flashes and drops out every 13 seconds until only two are left. Shots freeze people for half a second.
 Last one standing wins.
 
 - `server.js` serves the game at `/` and relays online rooms at `/ws`. It has no dependencies.
 - `public/index.html` is the whole game.
-- `public/music/` holds the soundtrack (added later). The menu theme loops in the menus; the others rotate through matches.
+- `public/music/` holds the soundtrack, Sweep Kings 1 to 6. Track 1 loops in the menus; the others rotate through matches.
 - `render.yaml` tells Render how to run it on the free plan.
 
 ## Put it online (one time)
