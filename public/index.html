@@ -192,13 +192,14 @@ body.touchmode .joinhint{display:none;}
 #stick i{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--paper);
   border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);}
 .tbtns{position:absolute;right:max(18px,calc(env(safe-area-inset-right,0px) + 12px));bottom:max(22px,calc(env(safe-area-inset-bottom,0px) + 16px));
-  width:200px;height:190px;pointer-events:none;}
+  width:260px;height:190px;pointer-events:none;}
 .tb{position:absolute;pointer-events:auto;touch-action:none;border:3px solid var(--ink);border-radius:50%;font-family:var(--display);font-weight:400;
   color:var(--ink);box-shadow:0 5px 0 var(--ink);-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;padding:0;}
 .tb.jump{right:0;bottom:0;width:96px;height:96px;font-size:22px;background:var(--sun);}
 .tb.dive{right:104px;bottom:6px;width:70px;height:70px;font-size:17px;background:#ff8fbf;}
 .tb.grab{right:22px;bottom:110px;width:70px;height:70px;font-size:17px;background:#9fd3ff;}
 .tb.fire{right:112px;bottom:90px;width:74px;height:74px;font-size:16px;background:#ff5a3c;color:#fff;-webkit-text-stroke:0;}
+.tb.duck{right:184px;bottom:12px;width:70px;height:70px;font-size:17px;background:#8be6c0;}
 .tb.on{transform:translateY(4px) scale(.95);box-shadow:0 1px 0 var(--ink);}
 .tpause{position:absolute;pointer-events:auto;left:max(16px,env(safe-area-inset-left,0px));top:max(72px,calc(env(safe-area-inset-top,0px) + 66px));
   width:44px;height:44px;border:3px solid var(--ink);border-radius:14px;background:var(--paper);box-shadow:0 4px 0 var(--ink);display:grid;place-items:center;padding:0;}
@@ -353,13 +354,13 @@ body.touchmode #big span{font-size:clamp(64px,22vw,150px);}
           <div class="actions"><button class="btn small" id="leaveBtn" type="button">Leave room</button></div>
         </div>
       </div>
-      <p class="tip"><b>PRO TIP</b>Jump the low bar, never the high one. Watch both: where they arrive together, move. A shot freezes people for a second, so catch them right before the sweep.</p>
+      <p class="tip"><b>PRO TIP</b>Jump the low bar. Duck (or dive) under the high one. You can't do both at once, so where they arrive together, move. A shot freezes people for half a second.</p>
       <details class="howto">
         <summary>Controls</summary>
         <div class="controls">
-          <div class="ctl"><strong>Controller</strong><kbd class="k">A</kbd> join / jump <kbd class="k">X</kbd> dive <kbd class="k">B</kbd> grab <kbd class="k">RT</kbd> shoot <kbd class="k">LT</kbd> aim <kbd class="k">RB</kbd>/<kbd class="k">LB</kbd> zoom in / out <kbd class="k">Right stick</kbd> look <kbd class="k">Start</kbd> pause</div>
-          <div class="ctl"><strong>Keyboard 1</strong><kbd class="k">WASD</kbd> move <kbd class="k">Space</kbd> join / jump <kbd class="k">Shift</kbd> dive <kbd class="k">E</kbd> grab <kbd class="k">Q</kbd> shoot</div>
-          <div class="ctl"><strong>Keyboard 2</strong><kbd class="k">Arrows</kbd> move <kbd class="k">/</kbd> join / jump <kbd class="k">.</kbd> dive <kbd class="k">,</kbd> grab <kbd class="k">L</kbd> shoot</div>
+          <div class="ctl"><strong>Controller</strong><kbd class="k">A</kbd> join / jump <kbd class="k">X</kbd> dive <kbd class="k">Y</kbd> duck <kbd class="k">B</kbd> grab <kbd class="k">RT</kbd> shoot <kbd class="k">LT</kbd> aim <kbd class="k">RB</kbd>/<kbd class="k">LB</kbd> zoom in / out <kbd class="k">Right stick</kbd> look <kbd class="k">Start</kbd> pause</div>
+          <div class="ctl"><strong>Keyboard 1</strong><kbd class="k">WASD</kbd> move <kbd class="k">Space</kbd> join / jump <kbd class="k">Shift</kbd> dive <kbd class="k">C</kbd> duck <kbd class="k">E</kbd> grab <kbd class="k">Q</kbd> shoot</div>
+          <div class="ctl"><strong>Keyboard 2</strong><kbd class="k">Arrows</kbd> move <kbd class="k">/</kbd> join / jump <kbd class="k">.</kbd> dive <kbd class="k">K</kbd> duck <kbd class="k">,</kbd> grab <kbd class="k">L</kbd> shoot</div>
           <div class="ctl"><strong>Anywhere</strong><kbd class="k">F</kbd> fullscreen <kbd class="k">M</kbd> music <kbd class="k">B</kbd> / <kbd class="k">Backspace</kbd> leave <kbd class="k">C</kbd> / <kbd class="k">Y</kbd> CPU fill <kbd class="k">V</kbd> / <kbd class="k">X</kbd> CPU skill</div>
           <div class="ctl"><strong>Mouse</strong>Click the game to lock the mouse, move to aim, click to shoot, Esc to let go, scroll to zoom</div>
           <div class="ctl"><strong>Phone / tablet</strong>Controls appear on screen. Thumb on the left to move, drag the right side to look.</div>
@@ -411,9 +412,10 @@ body.touchmode #big span{font-size:clamp(64px,22vw,150px);}
       <button class="tb dive" id="tDive" type="button" aria-label="Dive">Dive</button>
       <button class="tb jump" id="tJump" type="button" aria-label="Jump">Jump</button>
       <button class="tb fire" id="tFire" type="button" aria-label="Shoot">Shoot</button>
+      <button class="tb duck" id="tDuck" type="button" aria-label="Duck">Duck</button>
     </div>
     <button class="tpause" id="tPause" type="button" aria-label="Pause"><svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button>
-    <p class="thint" id="tHint">Left thumb moves · drag right side to aim · jump the low bar</p>
+    <p class="thint" id="tHint">Left thumb moves · jump the low bar · hold Duck for the high one</p>
   </div>
 </div>
 
@@ -459,16 +461,19 @@ scene.add(sun); scene.add(sun.target);
 /* ================= arena ================= */
 // Jump Showdown: a round platform of eight wedge segments around a tower in the middle. Two bars
 // sweep round it: a low one (a giant broom) you have to jump, which speeds up all round, and a slow
-// high one at head height that clobbers anyone caught mid-jump. From 30 s in, segments start
+// high one at chest height you have to duck (or dive) under. You can't do both at once, so where
+// the two arrive together, you move. From 30 s in, segments start
 // dropping out one at a time, at random, until only two are left.
 const PLAT_Y = 0, PLAT_R = 12.5, HUB_R = 2.1, SEGS = 8, SEG_GAP = 0.5, SEG_T = 0.56, SLIME_Y = -16, TIME_LIMIT = 180;
 const SEG_WARN = 2.6, FIRST_FALL = 30, FALL_EVERY = 13, SEGS_LEFT = 2;
 const SEG_COLORS = [0xa760f0, 0x4ea6ff, 0xffc63a, 0xff74b4, 0x4fd59b, 0xff8f45, 0x47d4e6, 0xc6e84a];
 // the bars: height of the centre line, thickness, reach, and how fast they turn (rad/s, start to
 // full speed over BAR_RAMP seconds). The low bar starts gentle and gets fast; the high one creeps up.
-const LOW_H = 0.46, LOW_R = 0.32, HIGH_H = 2.75, HIGH_R = 0.42, BAR_LEN = PLAT_R + 0.9, HUB_TOP = 3.9;
+const LOW_H = 0.46, LOW_R = 0.32, HIGH_H = 1.45, HIGH_R = 0.32, BAR_LEN = PLAT_R + 0.9, HUB_TOP = 3.9;
 const LOW_W = [0.9, 2.3], HIGH_W = [0.3, 0.62], BAR_RAMP = 150, LOW_A0 = 0, HIGH_A0 = Math.PI / 2;
 const BODY_H = 1.62, BODY_R = 0.36;   // a bean, as the bars see it: feet to crown, and how wide
+const DUCK_H = 0.92, DIVE_HT = 0.7;   // how tall it is squashed down in a duck, and flat out in a dive
+const heightOf = p => (p.ducking ? DUCK_H : p.diving ? DIVE_HT : BODY_H);
 const WHITE = new THREE.Color(0xffffff);
 
 // one wedge: an outer and an inner arc, with the straight sides pulled back half a gap each
@@ -609,7 +614,7 @@ const barW = (w, t) => w[0] + (w[1] - w[0]) * Math.min(1, t / BAR_RAMP);
 const barA = (a0, w, t) => t < BAR_RAMP ? a0 + w[0] * t + (w[1] - w[0]) * t * t / (2 * BAR_RAMP) : a0 + (w[0] + w[1]) / 2 * BAR_RAMP + w[1] * (t - BAR_RAMP);
 function updateBars(dt) {
   if (state === 'play') { bars.aL = barA(LOW_A0, LOW_W, roundT); bars.aH = barA(HIGH_A0, HIGH_W, roundT); bars.wL = barW(LOW_W, roundT); bars.wH = barW(HIGH_W, roundT); }
-  else if (state === 'lobby') { bars.aH += dt * 0.15; bars.wL = bars.wH = 0; }   // the crown turns slowly over the menu
+  else if (state === 'lobby') { bars.aL = LOW_A0; bars.aH = HIGH_A0; bars.wL = bars.wH = 0; }   // parked clear of the beans in the menu
   else if (state === 'over') { bars.wL = bars.wH = 0; }                          // the machine stops for the winner
   else { bars.aL = LOW_A0; bars.aH = HIGH_A0; bars.wL = bars.wH = 0; }
   bars.low.g.rotation.y = -bars.aL; bars.high.g.rotation.y = -bars.aH;
@@ -1627,7 +1632,7 @@ function readInput(p) {
 /* ================= touch controls ================= */
 // Phones and tablets get an on-screen stick and buttons. They appear automatically on a touch
 // screen and step aside again if a keyboard or mouse gets used.
-const TOUCH = { mx: 0, mz: 0, jump: false, dive: false, grab: false, fire: false };
+const TOUCH = { mx: 0, mz: 0, jump: false, dive: false, grab: false, fire: false, duck: false };
 const MOUSE = { down: false, player: null };
 let touchMode = false;
 try { touchMode = matchMedia('(hover: none) and (pointer: coarse)').matches; } catch (e) {}
@@ -1644,7 +1649,7 @@ function hasTouchPlayer() {
 function updateTouchUI() {
   const show = touchMode && ['intro', 'countdown', 'play'].includes(state) && !paused && hasTouchPlayer();
   const el = $('#touch'); if (el.hidden === show) el.hidden = !show;
-  if (!show) { TOUCH.mx = TOUCH.mz = 0; TOUCH.jump = TOUCH.dive = TOUCH.grab = TOUCH.fire = false; }
+  if (!show) { TOUCH.mx = TOUCH.mz = 0; TOUCH.jump = TOUCH.dive = TOUCH.grab = TOUCH.fire = TOUCH.duck = false; }
   $('#tPause').hidden = !!NET.room;
   $('#tHint').style.opacity = state === 'intro' || (state === 'countdown') || roundT < 4 ? 1 : 0;
 }
@@ -1678,7 +1683,7 @@ function updateTouchUI() {
     btn.addEventListener('pointerup', off); btn.addEventListener('pointercancel', off); btn.addEventListener('lostpointercapture', off);
     btn.addEventListener('contextmenu', e => e.preventDefault());
   };
-  hold($('#tJump'), 'jump'); hold($('#tDive'), 'dive'); hold($('#tGrab'), 'grab'); hold($('#tFire'), 'fire');
+  hold($('#tJump'), 'jump'); hold($('#tDive'), 'dive'); hold($('#tGrab'), 'grab'); hold($('#tFire'), 'fire'); hold($('#tDuck'), 'duck');
   $('#tPause').addEventListener('click', () => setPaused(true));
   window.addEventListener('touchstart', () => setTouchMode(true), { passive: true });
   window.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' && (Math.abs(e.movementX) + Math.abs(e.movementY)) > 2) setTouchMode(false); });
@@ -1694,8 +1699,8 @@ function readRaw(p) {
   if (p.kind === 'any') {
     const all = [readKind({ kind: 'kb1' }), readKind({ kind: 'kb2' }), readKind({ kind: 'touch' })];
     pads.forEach((gp, i) => { if (gp) all.push(readKind({ kind: 'pad', pad: i })); });
-    const o = { mx: 0, mz: 0, jump: false, dive: false, grab: false, fire: false };
-    all.forEach(a => { o.mx += a.mx; o.mz += a.mz; o.jump = o.jump || a.jump; o.dive = o.dive || a.dive; o.grab = o.grab || a.grab; o.fire = o.fire || a.fire; });
+    const o = { mx: 0, mz: 0, jump: false, dive: false, grab: false, fire: false, duck: false };
+    all.forEach(a => { o.mx += a.mx; o.mz += a.mz; o.jump = o.jump || a.jump; o.dive = o.dive || a.dive; o.grab = o.grab || a.grab; o.fire = o.fire || a.fire; o.duck = o.duck || a.duck; });
     const l = Math.hypot(o.mx, o.mz); if (l > 1) { o.mx /= l; o.mz /= l; }
     return o;
   }
@@ -1705,12 +1710,12 @@ function readKind(p) {
   const inp = { mx: 0, mz: 0, jump: false, dive: false, grab: false };
   if (p.kind === 'kb1') {
     inp.mx = (K.KeyD ? 1 : 0) - (K.KeyA ? 1 : 0); inp.mz = (K.KeyS ? 1 : 0) - (K.KeyW ? 1 : 0);
-    inp.jump = !!K.Space; inp.dive = !!(K.ShiftLeft || K.ShiftRight && (NET.room || !hasKb2())); inp.grab = !!K.KeyE; inp.fire = !!K.KeyQ;
+    inp.jump = !!K.Space; inp.dive = !!(K.ShiftLeft || K.ShiftRight && (NET.room || !hasKb2())); inp.grab = !!K.KeyE; inp.fire = !!K.KeyQ; inp.duck = !!K.KeyC;
   } else if (p.kind === 'kb2') {
     inp.mx = (K.ArrowRight ? 1 : 0) - (K.ArrowLeft ? 1 : 0); inp.mz = (K.ArrowDown ? 1 : 0) - (K.ArrowUp ? 1 : 0);
-    inp.jump = !!K.Slash; inp.dive = !!K.Period; inp.grab = !!K.Comma; inp.fire = !!K.KeyL;
+    inp.jump = !!K.Slash; inp.dive = !!K.Period; inp.grab = !!K.Comma; inp.fire = !!K.KeyL; inp.duck = !!K.KeyK;
   } else if (p.kind === 'touch') {
-    inp.mx = TOUCH.mx; inp.mz = TOUCH.mz; inp.jump = TOUCH.jump; inp.dive = TOUCH.dive; inp.grab = TOUCH.grab; inp.fire = TOUCH.fire;
+    inp.mx = TOUCH.mx; inp.mz = TOUCH.mz; inp.jump = TOUCH.jump; inp.dive = TOUCH.dive; inp.grab = TOUCH.grab; inp.fire = TOUCH.fire; inp.duck = TOUCH.duck;
   } else if (p.kind === 'pad') {
     const gp = pads[p.pad];
     if (gp) {
@@ -1718,7 +1723,7 @@ function readKind(p) {
       if (Math.hypot(x, z) < 0.22) { x = 0; z = 0; }
       if (btn(gp, 14)) x = -1; if (btn(gp, 15)) x = 1; if (btn(gp, 12)) z = -1; if (btn(gp, 13)) z = 1;
       inp.mx = x; inp.mz = z;
-      inp.jump = btn(gp, 0); inp.dive = btn(gp, 2); inp.grab = btn(gp, 1); inp.fire = btn(gp, 7);   // A jump, X dive, B grab, RT shoot
+      inp.jump = btn(gp, 0); inp.dive = btn(gp, 2); inp.grab = btn(gp, 1); inp.fire = btn(gp, 7); inp.duck = btn(gp, 3) || btn(gp, 10);   // A jump, X dive, B grab, RT shoot, Y (or left stick click) duck
     }
   }
   const l = Math.hypot(inp.mx, inp.mz); if (l > 1) { inp.mx /= l; inp.mz /= l; }
@@ -1768,7 +1773,7 @@ function barHit(p) {
   if (state !== 'play' || p.barCd > 0) return;
   const r = Math.hypot(p.pos.x, p.pos.z); if (r < 0.01) return;
   for (const [a, h, rad, low] of [[bars.aL, LOW_H, LOW_R, true], [bars.aH, HIGH_H, HIGH_R, false]]) {
-    if (p.pos.y + BODY_H < h - rad || p.pos.y > h + rad) continue;
+    if (p.pos.y + heightOf(p) < h - rad || p.pos.y > h + rad) continue;
     const c = Math.cos(a), s = Math.sin(a), along = p.pos.x * c + p.pos.z * s, perp = -p.pos.x * s + p.pos.z * c;
     if (Math.abs(along) > BAR_LEN + BODY_R || Math.abs(perp) > rad + BODY_R) continue;
     // which way this end of the bar is moving, and whether the bean is in front of it or behind it
@@ -1777,19 +1782,19 @@ function barHit(p) {
     p.pos.x = along * c - np * s; p.pos.z = along * s + np * c;
     if (!ahead) continue;   // walked into the back of it: just a bump
     const w = low ? bars.wL : bars.wH, tx = -s * sg, tz = c * sg, ox = p.pos.x / r, oz = p.pos.z / r;
-    const speed = (low ? 9 : 7) + w * r * (low ? 0.35 : 0.3), out = low ? 3.5 : 2;
+    const speed = (low ? 9 : 8) + w * r * (low ? 0.35 : 0.5), out = low ? 3.5 : 3;
     p.vel.x = tx * speed + ox * out; p.vel.z = tz * speed + oz * out;
-    p.vel.y = low ? 7 : Math.min(p.vel.y, -3);
-    p.grounded = false; p.coyote = 0; p.diving = false; releaseGrab(p); if (p.grabbedBy) releaseGrab(p.grabbedBy);
+    p.vel.y = low ? 7 : 4.5;
+    p.grounded = false; p.coyote = 0; p.diving = false; p.ducking = false; releaseGrab(p); if (p.grabbedBy) releaseGrab(p.grabbedBy);
     if (window.__deathlog && !(p.stunT > 0)) { const b = p.bot; p.hitInfo = { t: +roundT.toFixed(2), lp: b ? +lowPlan(p.pos.x, p.pos.z, p.vel.x, p.vel.z).ideal.toFixed(2) : null, pj: p.prevJump, low, y: +p.pos.y.toFixed(2), vy: +p.vel.y.toFixed(1), g: p.grounded, v: +Math.hypot(p.vel.x, p.vel.z).toFixed(1), r: +r.toFixed(1), dodge: b && b.dodge, jerr: b && +b.jerr.toFixed(2), near: Math.min(9, ...players.filter(q => q !== p && q.alive).map(q => +Math.hypot(q.pos.x - p.pos.x, q.pos.z - p.pos.z).toFixed(1))), stun: +(p.stunT || 0).toFixed(2) }; }
-    p.stunT = Math.max(p.stunT || 0, low ? 0.9 : 0.7); p.barCd = 0.45; p.sqv += 6; p.sweptAt = roundT; p.sweptBy = low ? 'low bar' : 'high bar';
+    p.stunT = Math.max(p.stunT || 0, low ? 0.9 : 0.8); p.barCd = 0.45; p.sqv += 6; p.sweptAt = roundT; p.sweptBy = low ? 'low bar' : 'high bar';
     low ? SFX.bonk() : SFX.clang();
     saySwept(p);
     return;
   }
 }
 
-const NO_INPUT = { mx: 0, mz: 0, jump: false, dive: false, grab: false, fire: false };
+const NO_INPUT = { mx: 0, mz: 0, jump: false, dive: false, grab: false, fire: false, duck: false };
 function stepPlayer(p, inp, dt) {
   if (!p.alive) return;
   p.immT = Math.max(0, (p.immT || 0) - dt); p.barCd = Math.max(0, (p.barCd || 0) - dt);
@@ -1822,7 +1827,9 @@ function stepPlayer(p, inp, dt) {
     if (!inp.grab || p.grabT > 2.2 || !q.alive || d > 1.8 || p.diving || Math.abs(p.pos.y - q.pos.y) > 1) releaseGrab(p);
   }
 
+  p.ducking = !!(inp.duck && p.grounded && !p.diving && !stunned && !jumpEdge && !diveEdge);
   let speed = RUN;
+  if (p.ducking) speed *= 0.3;
   if (p.grab) speed *= 0.5;
   if (p.grabbedBy) speed *= 0.35;
 
@@ -1952,7 +1959,7 @@ function updateImpacts(dt) {
 }
 let tracerI = 0, shotId = 0;
 const _o = new THREE.Vector3(), _d = new THREE.Vector3(), _c2 = new THREE.Vector3(), _aim = new THREE.Vector3();
-function chestOf(p, out) { return out.set(p.pos.x, p.pos.y + 0.95, p.pos.z); }
+function chestOf(p, out) { return out.set(p.pos.x, p.pos.y + (p.ducking ? 0.55 : 0.95), p.pos.z); }
 // distance along a ray to a sphere, or -1
 function raySphere(o, d, c, r) {
   const ox = o.x - c.x, oy = o.y - c.y, oz = o.z - c.z, b = ox * d.x + oy * d.y + oz * d.z, cc = ox * ox + oy * oy + oz * oz - r * r, h = b * b - cc;
@@ -2120,22 +2127,22 @@ function updateCrosses() {
 // bars don't reach it together), how many spots it weighs up when it picks where to stand, how fast
 // it notices a segment starting to go, and how much it wants to win (shoving and shooting people).
 const SKILLS = [
-  { name: 'Easy',     desc: 'Jumps a beat late, forgets about the high bar, and can barely shoot straight.',           err: 0.17, read: 0.1,  plan: false, samples: 8,  noise: 2.5, react: 0.9,  think: [0.5, 0.4],  aggr: 0.02, freeze: false, gunRate: 8, spread: 0.24, lead: false, range: 14 },
-  { name: 'Normal',   desc: 'Times the low bar fine, sometimes gets caught by the high one, takes the odd potshot.',  err: 0.075, read: 0.6, plan: false, samples: 16, noise: 1.2, react: 0.5,  think: [0.3, 0.2],  aggr: 0.05, freeze: false, gunRate: 7.5, spread: 0.12, lead: false, range: 18 },
-  { name: 'Hard',     desc: 'Clean jumps, reads both bars, and shoots back often.',                                   err: 0.055, read: 0.9, plan: true,  samples: 28, noise: 0.5, react: 0.25, think: [0.18, 0.1], aggr: 0.12, freeze: false, gunRate: 4.2, spread: 0.06, lead: false, range: 24 },
-  { name: 'Ruthless', desc: 'Near-perfect timing, and it freezes you with a shot right before the bar hits.',         err: 0.025, read: 1,   plan: true,  samples: 40, noise: 0.2, react: 0.1,  think: [0.1, 0.06], aggr: 0.3,  freeze: true,  gunRate: 3.2, spread: 0.012, lead: true, range: 34 },
+  { name: 'Easy',     desc: 'Jumps a beat late, forgets about the high bar, and can barely shoot straight.',           err: 0.17, duck: 0.88, read: 0.35, plan: false, samples: 8,  noise: 2.5, react: 0.9,  think: [0.5, 0.4],  aggr: 0.02, freeze: false, gunRate: 8, spread: 0.24, lead: false, range: 14 },
+  { name: 'Normal',   desc: 'Times the low bar fine, sometimes gets caught by the high one, takes the odd potshot.',  err: 0.09, duck: 0.95, read: 0.75, plan: true, samples: 16, noise: 1.2, react: 0.5,  think: [0.3, 0.2],  aggr: 0.05, freeze: false, gunRate: 7.5, spread: 0.12, lead: false, range: 18 },
+  { name: 'Hard',     desc: 'Clean jumps, reads both bars, and shoots back often.',                                   err: 0.055, duck: 0.98, read: 0.9, plan: true,  samples: 28, noise: 0.5, react: 0.25, think: [0.18, 0.1], aggr: 0.12, freeze: false, gunRate: 4.2, spread: 0.06, lead: false, range: 24 },
+  { name: 'Ruthless', desc: 'Near-perfect timing, and it freezes you with a shot right before the bar hits.',         err: 0.025, duck: 1, read: 1,   plan: true,  samples: 40, noise: 0.2, react: 0.1,  think: [0.1, 0.06], aggr: 0.3,  freeze: true,  gunRate: 3.2, spread: 0.012, lead: true, range: 34 },
 ];
 let cpuSkill = 1;
 try { const v = parseInt(localStorage.getItem('sweepkings.cpuSkill'), 10); if (v >= 0 && v < SKILLS.length) cpuSkill = v; } catch (e) {}
 const rng = ([lo, hi]) => lo + Math.random() * (hi - lo);
 function makeBrain() {
   const k = SKILLS[cpuSkill];
-  return { ...k, t: 0, tx: 0, tz: 0, has: false, lastT0: 0, jerr: 0, reads: false, hunt: null, huntT: 0, dodge: 0, gunT: 1.5 + Math.random() * 2, freezeCd: 0 };
+  return { ...k, t: 0, tx: 0, tz: 0, has: false, lastT0: 0, jerr: 0, reads: false, lastH0: 0, duckOk: true, duckLead: 0.1, hunt: null, huntT: 0, dodge: 0, gunT: 1.5 + Math.random() * 2, freezeCd: 0 };
 }
 // when, after takeoff, a hop's feet are above height h: [rising past it, coming back down past it]
 const hopWin = h => { const D = Math.sqrt(Math.max(0, JUMP * JUMP + 2 * GRAV * h)); return [(JUMP - D) / -GRAV, (JUMP + D) / -GRAV]; };
 const HOP_LOW = hopWin(LOW_H + LOW_R + 0.04);            // feet clear of the low bar
-const HOP_HIGH = hopWin(HIGH_H - HIGH_R - BODY_H);       // head up where the high bar is
+const JUMP_AIR = 2 * JUMP / -GRAV;                        // how long a hop keeps you off the ground (and standing tall)
 // when a bar next sweeps through a spot: [start, end] in seconds. Someone running round with the
 // bar meets it later, against it sooner, so their own drift round the middle counts.
 function barWindow(x, z, a, w, rad, vx = 0, vz = 0) {
@@ -2147,16 +2154,22 @@ function barWindow(x, z, a, w, rad, vx = 0, vz = 0) {
   if (d <= half) return [0, (d + half) / wr];          // on it right now
   return [(d - half) / wr, (d + half) / wr];           // (an arm just going past is no threat: this is the next one)
 }
+// is a bar overhead at this spot right now (either half of it, coming or going)?
+function barOver(x, z, a, rad) {
+  const r = Math.hypot(x, z); if (r < 0.5) return false;
+  const half = (rad + BODY_R) / r, d = ((Math.atan2(z, x) - a) % Math.PI + Math.PI) % Math.PI;
+  return d <= half || d >= Math.PI - half;
+}
 // the low bar from a spot: when it arrives, and how long until the ideal moment to jump it
 function lowPlan(x, z, vx, vz) {
   const [t0, t1] = barWindow(x, z, bars.aL, bars.wL, LOW_R, vx, vz);
   return { t0, t1, ideal: (t0 + t1) / 2 - (HOP_LOW[0] + HOP_LOW[1]) / 2 };
 }
-// would the high bar catch someone jumping the low bar here at the ideal moment?
+// would the high bar arrive while someone jumping the low bar here is in the air (so can't duck)?
 function clash(x, z, vx, vz, lp) {
   if (!isFinite(lp.t0)) return false;
   const [h0, h1] = barWindow(x, z, bars.aH, bars.wH, HIGH_R, vx, vz), j = Math.max(0, lp.ideal);
-  return h0 < j + HOP_HIGH[1] + 0.18 && h1 > j + HOP_HIGH[0] - 0.12;
+  return h0 < j + JUMP_AIR + 0.12 && h1 > j - 0.1;
 }
 // how good a place to stand is: solid, off the edges, the gaps and the tower, not crowded, reachable
 // without crossing a hole, and (for CPUs that plan) not where the two bars are about to arrive together
@@ -2192,7 +2205,8 @@ function botInput(p) {
       if (!ok(q) || !q.grounded || q.stunT > 0 || q.immT > 0 || roundT - (q.snipedAt ?? -99) < 10) continue;
       const d = Math.hypot(q.pos.x - p.pos.x, q.pos.z - p.pos.z); if (d > b.range || d < 1.2) continue;
       const lp = lowPlan(q.pos.x, q.pos.z, q.vel.x, q.vel.z);
-      if (lp.ideal > 0.05 && lp.ideal < 0.35) { tgt = q; break; }
+      const hq = barWindow(q.pos.x, q.pos.z, bars.aH, bars.wH, HIGH_R, q.vel.x, q.vel.z);
+      if ((lp.ideal > 0.05 && lp.ideal < 0.35) || (hq[0] > 0.1 && hq[0] < 0.4)) { tgt = q; break; }
     }
     if (tgt) { b.freezeCd = 3.5; tgt.snipedAt = roundT; if (Math.random() < 0.35) shootBot(p, tgt); }
     else if (b.gunT <= 0) {
@@ -2209,6 +2223,11 @@ function botInput(p) {
   b.lastT0 = lp.t0;
   // jump the low bar
   if ((p.grounded || p.coyote > 0) && isFinite(lp.t0) && (lp.ideal <= b.jerr || (lp.t0 <= 0 && lp.t1 > 0.04))) inp.jump = !p.prevJump;
+  // duck under the high bar: each pass it either gets down in time or forgets (easier CPUs forget more)
+  const hw = barWindow(p.pos.x, p.pos.z, bars.aH, bars.wH, HIGH_R, p.vel.x, p.vel.z);
+  if (hw[0] > b.lastH0 + 0.3) { b.duckOk = Math.random() < b.duck; b.duckLead = 0.06 + Math.random() * 0.14; }
+  b.lastH0 = hw[0];
+  if (!inp.jump && p.grounded && b.duckOk && ((isFinite(hw[0]) && hw[0] < b.duckLead) || barOver(p.pos.x, p.pos.z, bars.aH, HIGH_R + 0.1))) { inp.duck = true; return inp; }   // stays down till it's fully past
   const imminent = lp.ideal < 0.75;
   const here = solidAt(p.pos.x, p.pos.z), going = here >= 0 && segs[here].state === 1 && segs[here].t > b.react;
   // pick somewhere to stand every so often, or right away once it notices its spot is going
@@ -2247,7 +2266,7 @@ function botInput(p) {
     const r = Math.hypot(p.pos.x, p.pos.z) || 1;
     if (!b.dodge) {
       const [h0, h1] = barWindow(p.pos.x, p.pos.z, bars.aH, bars.wH, HIGH_R);
-      b.dodge = (h0 + h1) / 2 < ls.ideal + (HOP_HIGH[0] + HOP_HIGH[1]) / 2 ? -1 : 1;
+      b.dodge = (h0 + h1) / 2 < ls.ideal + JUMP_AIR / 2 ? -1 : 1;
     }
     for (let k = 0; k < 2; k++) {
       const mx = -p.pos.z / r * b.dodge, mz = p.pos.x / r * b.dodge;
@@ -2434,6 +2453,8 @@ function animChar(p, dt, t) {
   else { axL = Math.sin(p.phase) * 0.9 * run; axR = -axL; azL = -0.18 - Math.sin(t * 2 + p.i) * 0.04; azR = -azL; }
   if (p.fireT > 0) { axL = -1.55; azL = 0.05; }
   if (c.gun) { c.gun.visible = !(p.fireT > 0); c.handGun.visible = p.fireT > 0; }
+  p.duckK = (p.duckK || 0) + ((p.ducking ? 1 : 0) - (p.duckK || 0)) * (1 - Math.exp(-28 * dt));
+  if (p.ducking) { axL = axR = -0.35; azL = -2.75; azR = 2.75; }   // hands over the head
   const stunned = !!(p.stunT > 0 || p.stunVis);
   if (c.stars) { c.stars.visible = stunned; if (stunned) { c.stars.rotation.y += dt * 7; c.stars.children.forEach((st, k) => { st.rotation.y += dt * 9; st.rotation.x += dt * 5; }); } }
   if (stunned) { axL = -0.2 + Math.sin(t * 9) * 0.25; axR = 0.2 - Math.sin(t * 9 + 1) * 0.25; azL = -0.5; azR = 0.5; }
@@ -2446,7 +2467,8 @@ function animChar(p, dt, t) {
   p.sqk = Math.max(-0.35, Math.min(0.42, p.sqk));
   const breathe = p.grounded ? Math.sin(t * 3.2 + p.i * 1.7) * 0.02 : 0;
   const sk = p.sqk + breathe;
-  c.sq.scale.set(1 + sk * 0.6, 1 - sk, 1 + sk * 0.6);
+  const dk = p.duckK;
+  c.sq.scale.set((1 + sk * 0.6) * (1 + 0.28 * dk), (1 - sk) * (1 - 0.46 * dk), (1 + sk * 0.6) * (1 + 0.28 * dk));
   c.sq.position.y = -PIVOT + Math.abs(Math.sin(p.phase)) * 0.05 * run * (p.grounded ? 1 : 0);
 }
 
@@ -2684,11 +2706,11 @@ function constrainCam(v, pivot, lookAt) {
   // the ground: dirt inside the pit, grass outside it
   const r = Math.hypot(C.x, C.z), gy = (r < PIT_R ? groundY(C.x, C.z) : GRASS_Y) + CAM_PAD;
   if (C.y < gy) { C.y = gy; moved = true; }
-  // the platform: never sit inside a segment; go to whichever side the pivot is on
-  if (C.y > PLAT_Y - SEG_T - 0.3 && C.y < PLAT_Y + 0.3 && solidAt(C.x, C.z) >= 0) { C.y = P.y >= PLAT_Y ? PLAT_Y + 0.3 : PLAT_Y - SEG_T - 0.3; moved = true; }
   // the tower in the middle
   const hr = Math.hypot(C.x, C.z), HR = HUB_R + 0.8;
   if (C.y < HUB_TOP + 2.2 && hr < HR) { const k = HR / Math.max(0.01, hr); C.x = hr > 0.01 ? C.x * k : HR; C.z *= hr > 0.01 ? k : 1; moved = true; }
+  // the platform: never sit inside a segment; go to whichever side the pivot is on
+  if (C.y > PLAT_Y - SEG_T - 0.3 && C.y < PLAT_Y + 0.3 && solidAt(C.x, C.z) >= 0) { C.y = P.y >= PLAT_Y ? PLAT_Y + 0.3 : PLAT_Y - SEG_T - 0.3; moved = true; }
   if (moved) v.cam.lookAt(lookAt);
 }
 function finishView(v, pts, dt) {
@@ -3137,7 +3159,7 @@ function renderOnline() {
 }
 
 function packBody(p) {
-  const f = (p.alive ? 1 : 0) | (p.grounded ? 2 : 0) | (p.diving ? 4 : 0) | (p.stunT > 0 ? 8 : 0);
+  const f = (p.alive ? 1 : 0) | (p.grounded ? 2 : 0) | (p.diving ? 4 : 0) | (p.stunT > 0 ? 8 : 0) | (p.ducking ? 16 : 0);
   return [p.i, r2(p.pos.x), r2(p.pos.y), r2(p.pos.z), r2(p.yaw), r2(p.vel.x), r2(p.vel.y), r2(p.vel.z), f, p.layer, p.grab ? p.grab.i : -1];
 }
 function applyBody(p, b) {
@@ -3147,7 +3169,7 @@ function applyBody(p, b) {
   else { p.net.x = tx; p.net.y = ty; p.net.z = tz; }
   p.targetYaw = num(b[4]); p.vel.set(num(b[5]), num(b[6]), num(b[7]));
   const f = num(b[8]) | 0;
-  p.grounded = !!(f & 2); p.diving = !!(f & 4); p.stunVis = !!(f & 8);
+  p.grounded = !!(f & 2); p.diving = !!(f & 4); p.stunVis = !!(f & 8); p.ducking = !!(f & 16);
   p.layer = 0;
   const gs = num(b[10], -1) | 0;
   p.grab = gs >= 0 && gs !== p.i && players[gs] ? players[gs] : null;
